@@ -1,13 +1,14 @@
-﻿#include "SyntaxTree.h"
+﻿#include "Grammatical.h"
 #include "LL1.h"
-#include "pch.h"
-#include "Grammatical.h"
+#include "SyntaxTree.h"
 #include <iostream>
 using namespace std;
 using namespace Liu;
 int main()
 {
-	Liu::LL1 l;
-
+    LL1 ll;
+    ll.CreateLL1Table();
+    
 }
+
 

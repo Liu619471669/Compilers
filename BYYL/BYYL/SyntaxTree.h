@@ -1,13 +1,13 @@
-
-#ifndef SYNTAXTREE_H
-#define SYNTAXTREE_H
-
+#pragma once
+#include "Grammatical.h"
+#include "LL1.h"
 #include <vector>
 #include <map>
 #include <list>
 #include <unordered_map>
 #include <unordered_set>
 #include <set>
+using namespace std;
 namespace Liu {
 	class TreeNode {
 
@@ -17,19 +17,19 @@ namespace Liu {
 		成员变量类型声明
 		*/
 
-		enum TreeNodeType {
+		enum class TreeNodeType {
 			ProK, PheadK, TypeK, VarK, ProcDecK, StmLK, DecK, StmtK, ExpK
 		};
 		//语法树节点声明类型
-		enum TreeNodeDeclareType {
+		enum class TreeNodeDeclareType {
 			ArrayK, CharK, IntegerK, RecordK, IdK_Dec
 		};
 		//语法树节点语句类型
-		enum TreeNodeStatementType {
+		enum class TreeNodeStatementType {
 			IfK, WhileK, AssignK, ReadK, WriteK, CallK, ReturnK
 		};
 		//语法树节点表达类型
-		enum TreeNodeExpressionType {
+		enum class TreeNodeExpressionType {
 			OpK, ConstK, IdK_Exp
 		};
 		//语法树节点类型共用体
@@ -39,13 +39,13 @@ namespace Liu {
 			TreeNodeStatementType stmt;
 			TreeNodeExpressionType exp;
 		};
-		enum wordType {//当语法树节点为“关系运算符表达式”时，取LT，EQ；当语法树节点为“加法运算简单表达式”时，取PLUS，MINUS；当语法树节点为“乘法运算项”时，取TIMES，OVER;其他情况无效
+		enum class wordType {//当语法树节点为“关系运算符表达式”时，取LT，EQ；当语法树节点为“加法运算简单表达式”时，取PLUS，MINUS；当语法树节点为“乘法运算项”时，取TIMES，OVER;其他情况无效
 			LT, EQ, PLUS, MINUS, TIMES, OVER
 		};
-		enum varkindType {//IdV表示标志符变量，ArrayMembV表示数组成员变量，FieldMembV表示域成员变量
+		enum class varkindType {//IdV表示标志符变量，ArrayMembV表示数组成员变量，FieldMembV表示域成员变量
 			IdV, ArrayMembV, FieldMembV
 		};
-		enum checkType {//为类型检查ExpType类型
+		enum class checkType {//为类型检查ExpType类型
 			Void, Integer, Boolean
 		};
 
@@ -99,5 +99,3 @@ using namespace std;
 
 
 
-
-#endif 

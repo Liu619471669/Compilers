@@ -1,6 +1,3 @@
-﻿  BYYL.cpp
-D:\GitHub\projects\编译器\Compilers\BYYL\BYYL\BYYL.cpp(10,7): error C2039: "LL1": 不是 "Liu" 的成员
-D:\GitHub\projects\编译器\Compilers\BYYL\BYYL\Grammatical.h(3): message : 参见“Liu”的声明
-D:\GitHub\projects\编译器\Compilers\BYYL\BYYL\BYYL.cpp(10,11): error C2065: “LL1”: 未声明的标识符
-D:\GitHub\projects\编译器\Compilers\BYYL\BYYL\BYYL.cpp(10,11): error C2146: 语法错误: 缺少“;”(在标识符“l”的前面)
-D:\GitHub\projects\编译器\Compilers\BYYL\BYYL\BYYL.cpp(10,11): error C2065: “l”: 未声明的标识符
+﻿  LL1.cpp
+D:\c++\BYYL\BYYL\LL1.cpp(1,10): warning C4067: 预处理器指令后有意外标记 - 应输入换行符
+  BYYL.vcxproj -> D:\c++\BYYL\x64\Debug\BYYL.exe

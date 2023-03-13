@@ -1,7 +1,8 @@
-#ifndef GRAMMATICAL_H
-#define GRAMMATICAL_H
+#pragma once
+
 namespace Liu {
-	enum characterRepertoire {
+	enum class Rep {
+		
 		Program,
 		ProgramHead,
 		ProgramName,
@@ -9,7 +10,9 @@ namespace Liu {
 		TypeDecpart,
 		TypeDecMore,
 		TypeId,
+		TypeDec,
 		TypeDef,
+		TypeDecList,
 		BaseType,
 		StructureType,
 		ArrayType,
@@ -26,8 +29,7 @@ namespace Liu {
 		VarDecMore,
 		VarIdList,
 		VarIdMore,
-		ProcDecpart,
-		procDec,
+		ProcDec,
 		ProcDecMore,
 		ProcName,
 		ParamList,
@@ -66,13 +68,13 @@ namespace Liu {
 		FieldVarMore,
 		CmpOp,
 		AddOp,
-		MulOp,
+		MultOp,
 		PROGRAM,
 		ID,
 		TYPE,
 		INTEGER,
 		CHAR,
-		ARRYA,
+		ARRAY,
 		OF,
 		INTC,
 		RECORD,
@@ -86,16 +88,32 @@ namespace Liu {
 		FI,
 		WHILE,
 		DO,
+		DOT,
 		ENDWH,
 		READ,
 		WRITE,
-		RETURN
-	};
+		RETURN,
+		COMMA,
+		·ÖºÅ,
+		×óÐ¡À¨ºÅ,
+		ÓÒÐ¡À¨ºÅ,
+		×óÖÐÀ¨ºÅ,
+		ÓÒÖÐÀ¨ºÅ,
+		¼ÓºÅ,
+		¼õºÅ,
+		³ËºÅ,
+		³ýºÅ,
+		Ð¡ÓÚºÅ,
+		µÈÓÚºÅ,
+		¸³ÖµºÅ,
+
 	
+		
+
+	};
+
 
 }
 
 
 
-
-#endif 

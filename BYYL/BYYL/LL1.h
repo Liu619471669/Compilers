@@ -1,5 +1,5 @@
-#ifndef LL1_H
-#define LL1_H
+#pragma once
+#include "SyntaxTree.h"
 #include "Grammatical.h"
 #include <stack>
 using namespace std;
@@ -117,95 +117,21 @@ namespace Liu {
 		void Process103();
 		void Process104();
 		//TokenList* getToken();
-		
+
 	private:
 		TreeNode* procTreeNode;
 
-		bool ifNonTerminalSymbol(characterRepertoire cr);//判断输入的符号是否是非终极符
-		void push(characterRepertoire cr);
+		bool ifNonTerminalSymbol(Rep cr);//判断输入的符号是否是非终极符
+		void push(Rep cr);
 		void push(TreeNode** t);
-		characterRepertoire pop_cr();
+		Rep pop_cr();
 		TreeNode** pop_tn();
 		TreeNode* createProgramHeadNode();
-		stack<characterRepertoire> symbolStack;
+		stack<Rep> symbolStack;
 		stack<TreeNode**> treeNodePointerStack;
 		bool symbolStackEmptyFlag;
-		map<characterRepertoire, map<characterRepertoire,int>> LL1Table;
+		unordered_map<Rep,unordered_map<Rep, int>> LL1Table;
 	};
-	void LL1::CreateLL1Table() {
-		LL1Table[ParamDecList][DeclarePart] = 5;
-		cout << LL1Table[ParamDecList][DeclarePart];
-	}
-	bool LL1::ifNonTerminalSymbol(characterRepertoire cr) {
-		if ((int)cr >= 65)return true;
-		return false;
-	}
-	TreeNode* LL1::createProgramHeadNode() {
-		TreeNode* t = new TreeNode();
-		t->nodekind = TreeNode::TreeNodeType::PheadK;
-		return t;
-	}
-	void LL1::push(characterRepertoire cr) {
-		symbolStack.push(cr);
-	}
-	void LL1::push(TreeNode** t) {
-		treeNodePointerStack.push(t);
-	}
-	characterRepertoire LL1::pop_cr() {
-		characterRepertoire cr = symbolStack.top();
-		symbolStack.pop();
-		return cr;
-	}
-	TreeNode** LL1::pop_tn() {
-		TreeNode** t = treeNodePointerStack.top();
-		treeNodePointerStack.pop();
-		return t;
-	}
-	TreeNode* LL1::ParseLL() {
-		CreateLL1Table();
-
-		symbolStackEmptyFlag = true;
-		push(Program);
-
-		procTreeNode = new TreeNode();
-		procTreeNode->nodekind = TreeNode::TreeNodeType::ProK;
-		for (int i = 2; i >= 0; i--)push(&procTreeNode->child[i]);
-
-		//getToken();
-
-		while (!symbolStack.empty()) {
-			if (!ifNonTerminalSymbol(symbolStack.top())) {
-				//是终极符
-				
-			}
-			else {
-				//是非终极符
-
-			}
-		}
-
-	}
-	
-	void LL1::Process1() {
-		pop_cr();
-		push(ProgramBody);
-		push(DeclarePart);
-		push(ProgramHead);
-
-	}
-	void LL1::Process2() {
-		push(ProgramName);
-		push(PROGRAM);
-		TreeNode** pt = pop_tn();
-		TreeNode* t=createProgramHeadNode();
-		(*pt) = t;
-		
-	}
-	void LL1::Process3() {
-		//(*procTreeNode).child[0]->name.push_back()
-	}
-	
 
 }
 
-#endif 

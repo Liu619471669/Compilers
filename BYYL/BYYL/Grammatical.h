@@ -23,7 +23,6 @@ namespace Liu {
 		VarDecpart,
 		VarDec,
 		VarDecList,
-		VarDecList,
 		VarDecMore,
 		VarIdList,
 		VarIdMore,
@@ -92,6 +91,8 @@ namespace Liu {
 		WRITE,
 		RETURN
 	};
+	
+
 }
 
 

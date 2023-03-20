@@ -1,6 +1,7 @@
 #include "LL1.h";
 #include "SyntaxTree.h"
 #include "Grammatical.h"
+#include "token.h"
 #include <iostream>
 
 using namespace std;
@@ -227,25 +228,20 @@ void LL1::CreateLL1Table() {
 	LL1Table[Rep::MultOp][Rep::³ýºÅ] = 104;
 	L
 }
+
 bool LL1::ifNonTerminalSymbol(Rep cr) {
-	if ((int)cr >= 65)return true;
+	if (cr >= Rep::PROGRAM)return true;
 	return false;
 }
-TreeNode* LL1::createProgramHeadNode() {
+
+TreeNode* LL1::createNode(TreeNode::TreeNodeType type) {
 	TreeNode* t = new TreeNode();
-	t->nodekind = TreeNode::TreeNodeType::PheadK;
+	t->nodekind = type;
 	return t;
 }
-void LL1::push(Rep cr) {
-	symbolStack.push(cr);
-}
-void LL1::push(TreeNode** t) {
-	treeNodePointerStack.push(t);
-}
-Rep LL1::pop_cr() {
-	Rep cr = symbolStack.top();
-	symbolStack.pop();
-	return cr;
+TreeNode* LL1::createNode(TreeNode::TreeNodeType type, TreeNode::TreeNodeDeclareType decType) {
+	TreeNode* t = createNode(type);
+	t->kind.dec = decType;
 }
 TreeNode** LL1::pop_tn() {
 	TreeNode** t = treeNodePointerStack.top();
@@ -258,11 +254,11 @@ TreeNode* LL1::ParseLL() {
 	symbolStackEmptyFlag = true;
 	push(Rep::Program);
 
-	procTreeNode = new TreeNode();
-	procTreeNode->nodekind = TreeNode::TreeNodeType::ProK;
-	for (int i = 2; i >= 0; i--)push(&procTreeNode->child[i]);
+	proTreeNode = createNode(TreeNode::TreeNodeType::ProK);
 
-	//getToken();
+	for (int i = 2; i >= 0; i--)push(&proTreeNode->child[i]);
+
+	TokenList* t = getToken();
 
 	while (!symbolStack.empty()) {
 		if (!ifNonTerminalSymbol(symbolStack.top())) {
@@ -277,6 +273,25 @@ TreeNode* LL1::ParseLL() {
 	return nullptr;
 }
 
+void LL1::push(Rep cr) {
+	symbolStack.push(cr);
+}
+void LL1::push(TreeNode** t) {
+	treeNodePointerStack.push(t);
+}
+
+Rep LL1::pop_cr() {
+	Rep cr = symbolStack.top();
+	symbolStack.pop();
+	return cr;
+}
+
+TokenList* LL1::getToken() {
+	TokenList* pToken = TokenListHead;
+	TokenListHead = TokenListHead->next;
+	return pToken;
+}
+
 void LL1::Process1() {
 	pop_cr();
 	push(Rep::ProgramBody);
@@ -288,17 +303,51 @@ void LL1::Process2() {
 	push(Rep::ProgramName);
 	push(Rep::PROGRAM);
 	TreeNode** pt = pop_tn();
-	TreeNode* t = createProgramHeadNode();
+	TreeNode* t = createNode(TreeNode::TreeNodeType::PheadK);
 	(*pt) = t;
 
 }
 void LL1::Process3() {
-	//(*procTreeNode).child[0]->name.push_back()
+	TokenList* pToken = getToken();
+	push(Rep::ID);
+	string name = pToken->Sem;
+	(*proTreeNode).child[0]->name.push_back(name);
+	int num = (*proTreeNode).child[0]->getIdnum();
+	(*proTreeNode).child[0]->setIdnum(num + 1);
+	
+	
 }
 void LL1::Process4() {
 	push(Rep::FuncDec);
 	push(Rep::VarDec);
 	push(Rep::TypeDec);
+	
+}
+void LL1::Process5() {
+	//¿Õº¯Êý
+}
+void LL1::Process6() {
+	push(Rep::TypeDeclaration);
+}
+void LL1::Process7() {
+	push(Rep::TypeDecList);
+	push(Rep::TYPE);
+	TreeNode* t = createNode(TreeNode::TreeNodeType::TypeK);
+	TreeNode** pt = pop_tn();
+	*pt = t;
+	push(&t->sibling);
+	push(&t->child[0]);
 
+}
+void LL1::Process8() {
+	push(Rep::TypeDecMore);
+	push(Rep::·ÖºÅ);
+	push(Rep::TypeDef);
+	push(Rep::¸³ÖµºÅ);
+	push(Rep::TypeId);
+	TreeNode* t = createNode(TreeNode::TreeNodeType::DecK,TreeNode::TreeNodeDeclareType::IdK_Dec);
+	TreeNode** pt = pop_tn();
+	*pt = t;
+	
 }
 

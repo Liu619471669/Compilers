@@ -116,21 +116,31 @@ namespace Liu {
 		void Process102();
 		void Process103();
 		void Process104();
-		//TokenList* getToken();
-
+		TokenList* getToken();
+		
 	private:
-		TreeNode* procTreeNode;
+		TreeNode* proTreeNode;//根节点指针
 
+		TokenList* TokenListHead;
 		bool ifNonTerminalSymbol(Rep cr);//判断输入的符号是否是非终极符
+
 		void push(Rep cr);
 		void push(TreeNode** t);
+
 		Rep pop_cr();
 		TreeNode** pop_tn();
-		TreeNode* createProgramHeadNode();
+
+		TreeNode* createNode(TreeNode::TreeNodeType type);
+		TreeNode* createNode(TreeNode::TreeNodeType type,TreeNode::TreeNodeDeclareType decType);
+
 		stack<Rep> symbolStack;//符号栈
 		stack<TreeNode**> treeNodePointerStack;//语法树指针栈
+		stack<TreeNode*> treeNodeNowStack;//语法树当前节点栈
+
 		bool symbolStackEmptyFlag;//符号栈为空标记
 		unordered_map<Rep,unordered_map<Rep, int>> LL1Table;
+
+
 	};
 
 }

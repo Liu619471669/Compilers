@@ -1,6 +1,7 @@
 #pragma once
 #include "Grammatical.h"
 #include "LL1.h"
+#include <iostream>
 #include <vector>
 #include <map>
 #include <list>
@@ -12,7 +13,6 @@ namespace Liu {
 	class TreeNode {
 
 	public:
-
 		/*
 		成员变量类型声明
 		*/
@@ -49,22 +49,27 @@ namespace Liu {
 			Void, Integer, Boolean
 		};
 
+		int getLinemo();
+		int getIdnum();
+		int setLinemo(int value);
+		int setIdnum(int value);
+
 		/*
 		成员变量
 		*/
 
 		TreeNode* child[3];//孩子节点
 		TreeNode* sibling;//兄弟节点
-		int linemo;//源程序行号
+		
 		TreeNodeType nodekind;//语法树节点类型
 		TreeNodeKindTypeUnion kind;//语法树节点的具体类型，nodekind为DecK存为声明类型dec，nodekind为StmtK存为语句类型stmt，nodekind为ExpK时存为表达类型exp
-		int idnum;//一个节点中的标志符的数量
+		
 		vector<string> name;//节点中标志符的名字
-		//std::vector<>
 		string typeName;//记录类型名，当节点为声明类型dec，且类型是由类型标志符表示时有效
 
 	private:
-
+		int idnum;//一个节点中的标志符的数量
+		int linemo;//源程序行号
 		struct ArrayProperties {
 			int low;//数组下界
 			int up;//数组上界

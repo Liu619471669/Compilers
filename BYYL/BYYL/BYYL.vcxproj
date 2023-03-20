@@ -141,11 +141,13 @@
   <ItemGroup>
     <ClCompile Include="BYYL.cpp" />
     <ClCompile Include="LL1.cpp" />
+    <ClCompile Include="SyntaxTree.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Grammatical.h" />
     <ClInclude Include="LL1.h" />
     <ClInclude Include="SyntaxTree.h" />
+    <ClInclude Include="token.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

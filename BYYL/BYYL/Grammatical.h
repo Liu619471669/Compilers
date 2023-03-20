@@ -7,6 +7,7 @@ namespace Liu {
 		ProgramHead,
 		ProgramName,
 		DeclarePart,
+		TypeDeclaration,
 		TypeDecpart,
 		TypeDecMore,
 		TypeId,

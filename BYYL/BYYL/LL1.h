@@ -127,9 +127,9 @@ namespace Liu {
 		Rep pop_cr();
 		TreeNode** pop_tn();
 		TreeNode* createProgramHeadNode();
-		stack<Rep> symbolStack;
-		stack<TreeNode**> treeNodePointerStack;
-		bool symbolStackEmptyFlag;
+		stack<Rep> symbolStack;//·ûºÅÕ»
+		stack<TreeNode**> treeNodePointerStack;//Óï·¨Ê÷Ö¸ÕëÕ»
+		bool symbolStackEmptyFlag;//·ûºÅÕ»Îª¿Õ±ê¼Ç
 		unordered_map<Rep,unordered_map<Rep, int>> LL1Table;
 	};
 

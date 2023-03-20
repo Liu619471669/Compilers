@@ -295,4 +295,10 @@ void LL1::Process2() {
 void LL1::Process3() {
 	//(*procTreeNode).child[0]->name.push_back()
 }
+void LL1::Process4() {
+	push(Rep::FuncDec);
+	push(Rep::VarDec);
+	push(Rep::TypeDec);
+
+}
 

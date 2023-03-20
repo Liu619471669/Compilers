@@ -66,6 +66,7 @@ namespace Liu {
 		VariMore,
 		FieldVar,
 		FieldVarMore,
+		FuncDec,
 		CmpOp,
 		AddOp,
 		MultOp,

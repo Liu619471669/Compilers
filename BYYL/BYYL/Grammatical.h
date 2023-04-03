@@ -1,8 +1,8 @@
 #pragma once
-
+#include "LiuPQ.h"
 namespace Liu {
 	enum class Rep {
-		
+
 		Program,
 		ProgramHead,
 		ProgramName,
@@ -28,10 +28,12 @@ namespace Liu {
 		VarDec,
 		VarDecList,
 		VarDecMore,
+		VarDeclaration,
 		VarIdList,
 		VarIdMore,
 		ProcDec,
 		ProcDecMore,
+		ProcDeclaration,
 		ProcName,
 		ParamList,
 		ParamDecList,
@@ -50,7 +52,7 @@ namespace Liu {
 		ConditionalStm,
 		LoopStm,
 		InputStm,
-		Invar,
+		InVar,
 		OutputStm,
 		ReturnStm,
 		CallStmRest,
@@ -71,7 +73,9 @@ namespace Liu {
 		CmpOp,
 		AddOp,
 		MultOp,
-		PROGRAM,
+
+
+		PROGRAM=200,
 		ID,
 		TYPE,
 		INTEGER,
@@ -97,6 +101,7 @@ namespace Liu {
 		RETURN,
 		COMMA,
 		·ÖºÅ,
+		Ã°ºÅ,
 		×óÐ¡À¨ºÅ,
 		ÓÒÐ¡À¨ºÅ,
 		×óÖÐÀ¨ºÅ,
@@ -108,8 +113,8 @@ namespace Liu {
 		Ð¡ÓÚºÅ,
 		µÈÓÚºÅ,
 		¸³ÖµºÅ,
-
-	
+		µã,
+		¶ººÅ,
 		
 
 	};

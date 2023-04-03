@@ -1,4 +1,5 @@
 #pragma once
+#include "LiuPQ.h"
 #include <iostream>
 //token÷÷¿‡
 enum class LexType {

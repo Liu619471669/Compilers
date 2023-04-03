@@ -1,0 +1,9 @@
+program p
+	type t := integer ;
+	var t vl;
+ 	char v2;
+begin
+	read(vl);
+	vl:=vl+10;
+	write(vl)
+end.

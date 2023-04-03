@@ -1,15 +1,15 @@
-#include "SyntaxTree.h"
+#include "LiuPQ.h"
 using namespace std;
 using namespace Liu;
-int TreeNode::getIdnum() {
+int TreeNode::GetIdnum() {
 	return idnum;
 }
-int TreeNode::getLinemo() {
+int TreeNode::GetLinemo() {
 	return linemo;
 }
-int TreeNode::setIdnum(int value) {
+void TreeNode::SetIdnum(int value) {
 	idnum = value;
 }
-int TreeNode::setLinemo(int value) {
+void TreeNode::SetLineno(int value) {
 	linemo = value;
 }

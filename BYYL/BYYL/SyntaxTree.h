@@ -1,6 +1,6 @@
 #pragma once
-#include "Grammatical.h"
-#include "LL1.h"
+#include "LiuPQ.h"
+
 #include <iostream>
 #include <vector>
 #include <map>
@@ -13,12 +13,18 @@ namespace Liu {
 	class TreeNode {
 
 	public:
-		/*
-		成员变量类型声明
-		*/
-
+		
+		
 		enum class TreeNodeType {
-			ProK, PheadK, TypeK, VarK, ProcDecK, StmLK, DecK, StmtK, ExpK
+			ProK,//根节点标志节点
+			PheadK,//程序头标志节点
+			TypeK,//类型声明标志节点
+			VarK,//变量声明标志节点
+			ProcDecK,//函数声明标志节点
+			StmLK, //语句序列标志节点
+			DecK,//声明节点
+			StmtK,//语句节点
+			ExpK,//表达式节点
 		};
 		//语法树节点声明类型
 		enum class TreeNodeDeclareType {
@@ -39,9 +45,6 @@ namespace Liu {
 			TreeNodeStatementType stmt;
 			TreeNodeExpressionType exp;
 		};
-		enum class wordType {//当语法树节点为“关系运算符表达式”时，取LT，EQ；当语法树节点为“加法运算简单表达式”时，取PLUS，MINUS；当语法树节点为“乘法运算项”时，取TIMES，OVER;其他情况无效
-			LT, EQ, PLUS, MINUS, TIMES, OVER
-		};
 		enum class varkindType {//IdV表示标志符变量，ArrayMembV表示数组成员变量，FieldMembV表示域成员变量
 			IdV, ArrayMembV, FieldMembV
 		};
@@ -49,10 +52,10 @@ namespace Liu {
 			Void, Integer, Boolean
 		};
 
-		int getLinemo();
-		int getIdnum();
-		int setLinemo(int value);
-		int setIdnum(int value);
+		int GetLinemo();
+		int GetIdnum();
+		void SetLineno(int value);
+		void SetIdnum(int value);
 
 		/*
 		成员变量
@@ -64,8 +67,12 @@ namespace Liu {
 		TreeNodeType nodekind;//语法树节点类型
 		TreeNodeKindTypeUnion kind;//语法树节点的具体类型，nodekind为DecK存为声明类型dec，nodekind为StmtK存为语句类型stmt，nodekind为ExpK时存为表达类型exp
 		
+
 		vector<string> name;//节点中标志符的名字
 		string typeName;//记录类型名，当节点为声明类型dec，且类型是由类型标志符表示时有效
+
+		
+
 
 	private:
 		int idnum;//一个节点中的标志符的数量
@@ -82,12 +89,15 @@ namespace Liu {
 			ParamType paramt;//记录过程的参数类型，valparamtype为值参，varparamtype为变参
 		};
 		struct ExpressionProperties {
-			wordType op;//单词类型
-			int val;//记录语法树节点的数值，仅当语法树节点为“数字因子”对应的语法树时才有效
+			LexType op;//单词类型
+			float val;//记录语法树节点的数值，仅当语法树节点为“数字因子”对应的语法树时才有效
 			varkindType varkind;//记录变量类别
 			checkType type;//记录语法树节点的检查类型
 		};
 
+		
+
+	public:
 		//记录节点的其他属性
 		struct SyntaxTreeNodeProperties
 		{
@@ -95,12 +105,12 @@ namespace Liu {
 			ProcProperties procAttr;
 			ExpressionProperties ExpAttr;
 		};
-
+		//成员变量
+		SyntaxTreeNodeProperties syntaxTreeNodeProperties;//记录节点的其他属性
 
 	};
 }
-using namespace std;
-//语法树节点类型
+
 
 
 

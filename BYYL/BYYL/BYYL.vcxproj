@@ -116,6 +116,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -144,7 +145,9 @@
     <ClCompile Include="SyntaxTree.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Exception.h" />
     <ClInclude Include="Grammatical.h" />
+    <ClInclude Include="LiuPQ.h" />
     <ClInclude Include="LL1.h" />
     <ClInclude Include="SyntaxTree.h" />
     <ClInclude Include="token.h" />

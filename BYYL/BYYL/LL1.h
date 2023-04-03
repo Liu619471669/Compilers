@@ -1,17 +1,17 @@
 #pragma once
-#include "SyntaxTree.h"
-#include "Grammatical.h"
+#include "LiuPQ.h"
 #include <stack>
 using namespace std;
 using namespace Liu;
 namespace Liu {
 	class LL1 {
 	public:
-		TreeNode tree;
+		
 		TreeNode* ParseLL();
 		void CreateLL1Table();
+		void CreateMatchTable();
 		void Predict(int num);
-		int Priosity(TreeNode::wordType op);
+		int Priosity(LexType op);
 		void Process1();
 		void Process2();
 		void Process3();
@@ -116,31 +116,52 @@ namespace Liu {
 		void Process102();
 		void Process103();
 		void Process104();
-		TokenList* getToken();
+		TokenList* GetToken();
 		
 	private:
 		TreeNode* proTreeNode;//根节点指针
+		TreeNode* nowTreeNode;//当前节点指针
+		TreeNode* saveP;
+		TokenList* currentToken;//当前Token
+		TokenList* TokenListHead;//Token序列头结点
+		bool getExpResult;
+		bool getExpResult2;
+		int expFlag;
+		float Result(TreeNode*);//计算语法树表达式的值
+		union Temp {
+			TreeNode::TreeNodeKindTypeUnion *treeNodeKindTypeUnion;
+			TreeNode::SyntaxTreeNodeProperties *syntaxTreeNodeProperties;
+		};
+		Temp* temp;//记录标识符类型信息的部分地址
+		
 
-		TokenList* TokenListHead;
-		bool ifNonTerminalSymbol(Rep cr);//判断输入的符号是否是非终极符
+		bool IfNonTerminalSymbol(Rep cr);//判断输入的符号是否是非终极符
 
-		void push(Rep cr);
-		void push(TreeNode** t);
+		void Push(Rep cr);
+		void Push(TreeNode** t);
+		
 
-		Rep pop_cr();
-		TreeNode** pop_tn();
+		Rep Pop_cr();//弹符号栈顶元素
+		TreeNode** Pop_tnp();//弹语法树指针栈顶元素
+		TreeNode* Pop_value();//弹操作数栈;
+		TreeNode* Pop_op();//弹操作符栈
 
-		TreeNode* createNode(TreeNode::TreeNodeType type);
-		TreeNode* createNode(TreeNode::TreeNodeType type,TreeNode::TreeNodeDeclareType decType);
+		TreeNode* CreateNode(TreeNode::TreeNodeType type);
+		TreeNode* CreateNode(TreeNode::TreeNodeType type,TreeNode::TreeNodeDeclareType decType);
+		TreeNode* CreateNode(TreeNode::TreeNodeType type, TreeNode::TreeNodeStatementType staType);
+		TreeNode* CreateNode(TreeNode::TreeNodeType type, TreeNode::TreeNodeExpressionType expType);
+
+		
 
 		stack<Rep> symbolStack;//符号栈
 		stack<TreeNode**> treeNodePointerStack;//语法树指针栈
-		stack<TreeNode*> treeNodeNowStack;//语法树当前节点栈
+		stack<TreeNode*> operandStack;//操作数栈
+		stack<TreeNode*> operatorStack;//操作符栈
 
 		bool symbolStackEmptyFlag;//符号栈为空标记
-		unordered_map<Rep,unordered_map<Rep, int>> LL1Table;
-
-
+		unordered_map<Rep, unordered_map<LexType, int>> LL1Table;
+		unordered_map<Rep,vector<LexType>> matchTable;
+		bool Match();//判断终极符是否匹配
 	};
 
 }

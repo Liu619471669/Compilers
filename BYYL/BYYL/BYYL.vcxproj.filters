@@ -38,5 +38,11 @@
     <ClInclude Include="token.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Exception.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LiuPQ.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
